@@ -1,0 +1,33 @@
+include "factor.h"
+
+/**
+ * main - main function
+ *
+ *
+ * Return: void
+ */
+int main(int argc, char *argv[])
+{
+FILE *ptr;
+size_t count;
+ssize_t line;
+char *buffer = NULL;
+
+
+if (argc != 2)
+{
+printf(stderr, "Usage: factor <filename>\n");
+exit(EXIT_FAILURE);
+}
+ptr = open(argv[1], "r");
+if (ptr == NULL)
+{
+printf(stderr, "Error: can't open file %s\n", argv[1]);
+exit(EXIT_FAILURE);
+}
+while((line = getline(&buffer, &count, ptr)) != -1)
+{
+factorize(buffer);
+}
+return(0);
+}
